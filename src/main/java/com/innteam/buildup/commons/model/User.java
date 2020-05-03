@@ -17,7 +17,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @Entity
 @Table(name = User.TABLE_NAME)
-public class User {
+public class User extends DomainObject {
     public static final String TABLE_NAME = "users";
 
     @Size(min = 1)
