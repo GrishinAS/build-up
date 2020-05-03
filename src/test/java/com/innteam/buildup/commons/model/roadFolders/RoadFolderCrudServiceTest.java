@@ -9,6 +9,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,6 +29,9 @@ public class RoadFolderCrudServiceTest {
                         "https://github.com/muhdkhokhar/test/blob/master/Joshua%20Bloch%20-%20Effective%20Java%20(3rd)%20-%202018.pdf",
                         100000)),
                 java.util.List.of(roadFolder1, roadFolder2));
-        service.create(roadFolder);
+        final UUID uuid = service.create(roadFolder);
+
+        final RoadFolder folder = service.read(uuid);
+        System.out.println();
     }
 }
