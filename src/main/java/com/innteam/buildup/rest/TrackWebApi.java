@@ -1,15 +1,13 @@
 package com.innteam.buildup.rest;
 
 import com.innteam.buildup.commons.model.PaperRequest;
-import com.innteam.buildup.commons.model.paper.Paper;
+import com.innteam.buildup.commons.model.paper.Content;
 import com.innteam.buildup.commons.model.paper.PaperCrudService;
 import com.innteam.buildup.commons.model.roadFolders.RoadFolderCrudService;
 import com.innteam.buildup.commons.model.user.PaperActivityStatus;
 import com.innteam.buildup.commons.model.user.Progress;
 import com.innteam.buildup.commons.model.user.User;
 import com.innteam.buildup.commons.model.user.UserCrudService;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.innteam.buildup.commons.model.roadFolders.RoadFolder;
@@ -36,7 +34,7 @@ public class TrackWebApi {
   }
 
   @GetMapping("/roadMap")
-  public RoadFolder roadMap(@RequestParam String user_name) {
+  public RoadFolder roadMap(@RequestParam String username) {
     return roadCrudService.getMock();
   }
 
@@ -57,9 +55,9 @@ public class TrackWebApi {
 
   private ResponseEntity changeProgressStatus(@RequestBody PaperRequest request, PaperActivityStatus status) {
     final User anton = userCrudService.read(UUID.fromString(request.getUser_id()));
-    final Paper paper = paperCrudService.read(UUID.fromString(request.getPaper_id()));
+    final Content content = paperCrudService.read(UUID.fromString(request.getPaper_id()));
 
-    anton.getProgressList().add(new Progress(paper, 10L, status));
+    anton.getProgressList().add(new Progress(content, 10L, status));
     userCrudService.update(anton);
 
     return new ResponseEntity(HttpStatus.OK);

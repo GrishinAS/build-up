@@ -1,7 +1,7 @@
 package com.innteam.buildup.commons.model.user;
 
 import com.innteam.buildup.commons.model.DomainObject;
-import com.innteam.buildup.commons.model.paper.Paper;
+import com.innteam.buildup.commons.model.paper.Content;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -19,7 +19,7 @@ public class Progress extends DomainObject {
    @ManyToOne(
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
-    Paper paper;
+   Content content;
     Long timeSpent;
     PaperActivityStatus status;
 }

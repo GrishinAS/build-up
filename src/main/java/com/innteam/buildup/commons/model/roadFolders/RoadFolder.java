@@ -3,7 +3,7 @@ package com.innteam.buildup.commons.model.roadFolders;
 import java.util.List;
 
 import com.innteam.buildup.commons.model.DomainObject;
-import com.innteam.buildup.commons.model.paper.Paper;
+import com.innteam.buildup.commons.model.paper.Content;
 import lombok.*;
 
 import javax.persistence.*;
@@ -21,7 +21,7 @@ public class RoadFolder extends DomainObject {
   @ManyToMany(
           fetch = FetchType.EAGER,
           cascade = CascadeType.ALL)
-  private List<Paper> papers;
+  private List<Content> contents;
 
   @ManyToMany(
           fetch = FetchType.EAGER,

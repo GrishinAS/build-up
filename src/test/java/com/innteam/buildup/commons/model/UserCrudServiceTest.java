@@ -1,6 +1,6 @@
 package com.innteam.buildup.commons.model;
 
-import com.innteam.buildup.commons.model.paper.Paper;
+import com.innteam.buildup.commons.model.paper.Content;
 import com.innteam.buildup.commons.model.user.PaperActivityStatus;
 import com.innteam.buildup.commons.model.user.Progress;
 import com.innteam.buildup.commons.model.user.User;
@@ -27,8 +27,8 @@ public class UserCrudServiceTest {
         final UUID uuid = service.create(user);
 
         final User anton = service.read(uuid);
-        final Paper paper = new Paper("Endpoints", "https://docs.google.com/document/d/1NS2ziIaUn4BlfwuSzG0CzbgxfN-wbIPW6dX5VjEUBOg/edit", 1000);
-        anton.getProgressList().add(new Progress(paper, 10L, PaperActivityStatus.IN_PROGRESS));
+        final Content content = new Content("Endpoints", "https://docs.google.com/document/d/1NS2ziIaUn4BlfwuSzG0CzbgxfN-wbIPW6dX5VjEUBOg/edit", 1000);
+        anton.getProgressList().add(new Progress(content, 10L, PaperActivityStatus.IN_PROGRESS));
 
         service.update(anton);
     }

@@ -11,9 +11,9 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = Paper.TABLE_NAME)
-public class Paper extends DomainObject {
-  static final String TABLE_NAME = "papers";
+@Table(name = Content.TABLE_NAME)
+public class Content extends DomainObject {
+  static final String TABLE_NAME = "contents";
   private String name;
   private String link;
   private int timeInSeconds;
