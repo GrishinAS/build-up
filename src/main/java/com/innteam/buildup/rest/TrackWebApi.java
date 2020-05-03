@@ -1,13 +1,15 @@
 package com.innteam.buildup.rest;
 
 import com.innteam.buildup.commons.model.PaperRequest;
-import com.innteam.buildup.commons.model.RoadFolder;
 import com.innteam.buildup.commons.model.paper.Paper;
 import com.innteam.buildup.commons.model.paper.PaperCrudService;
+import com.innteam.buildup.commons.model.roadFolders.RoadFolderCrudService;
 import com.innteam.buildup.commons.model.user.PaperActivityStatus;
 import com.innteam.buildup.commons.model.user.Progress;
 import com.innteam.buildup.commons.model.user.User;
 import com.innteam.buildup.commons.model.user.UserCrudService;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.innteam.buildup.commons.model.roadFolders.RoadFolder;
@@ -24,16 +26,18 @@ public class TrackWebApi {
 
   private PaperCrudService paperCrudService;
   private UserCrudService userCrudService;
+  private RoadFolderCrudService roadCrudService;
 
   @Autowired
-  public TrackWebApi(PaperCrudService paperCrudService, UserCrudService userCrudService){
+  public TrackWebApi(PaperCrudService paperCrudService, UserCrudService userCrudService, RoadFolderCrudService roadCrudService){
     this.paperCrudService = paperCrudService;
     this.userCrudService = userCrudService;
+    this.roadCrudService = roadCrudService;
   }
 
   @GetMapping("/roadMap")
   public RoadFolder roadMap(@RequestParam String user_name) {
-    return new RoadFolder();
+    return roadCrudService.getMock();
   }
 
   @PostMapping("/progress")
