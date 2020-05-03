@@ -2,6 +2,7 @@ package com.innteam.buildup.commons.model;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,6 +21,8 @@ public class DomainObject {
     public static final String JOIN_TABLE_SEPARATOR = "_";
 
     @Id
+    @GenericGenerator(strategy = "com.innteam.buildup.commons.model.IdGenerator", name = "domainObject_gen")
+    @GeneratedValue(generator = "domainObject_gen")
     private UUID id;
 
     private Timestamp creationDate;

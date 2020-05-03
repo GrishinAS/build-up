@@ -8,6 +8,7 @@ class BuildUpApplicationTests {
 
 	@Test
 	void contextLoads() {
+
 	}
 
 }
