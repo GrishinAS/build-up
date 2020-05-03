@@ -1,7 +1,7 @@
 package com.innteam.buildup.commons.model.user;
 
 import com.innteam.buildup.commons.model.DomainObject;
-import com.innteam.buildup.commons.model.Paper;
+import com.innteam.buildup.commons.model.paper.Paper;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

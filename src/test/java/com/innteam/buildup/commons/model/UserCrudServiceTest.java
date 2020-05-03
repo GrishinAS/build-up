@@ -1,5 +1,6 @@
 package com.innteam.buildup.commons.model;
 
+import com.innteam.buildup.commons.model.paper.Paper;
 import com.innteam.buildup.commons.model.user.PaperActivityStatus;
 import com.innteam.buildup.commons.model.user.Progress;
 import com.innteam.buildup.commons.model.user.User;

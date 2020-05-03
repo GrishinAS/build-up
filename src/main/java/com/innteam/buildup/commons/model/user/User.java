@@ -7,6 +7,7 @@ import lombok.experimental.FieldDefaults;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -20,7 +21,7 @@ public class User extends DomainObject {
     public static final String TABLE_NAME = "users";
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    List<Progress> progressList;
+    List<Progress> progressList = new ArrayList<>();
 
     @Size(min = 1)
     String name;

@@ -1,5 +1,6 @@
-package com.innteam.buildup.commons.model;
+package com.innteam.buildup.commons.model.paper;
 
+import com.innteam.buildup.commons.model.DomainObject;
 import lombok.*;
 
 import javax.persistence.Entity;
