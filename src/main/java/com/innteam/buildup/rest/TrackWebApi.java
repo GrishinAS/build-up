@@ -2,6 +2,8 @@ package com.innteam.buildup.rest;
 
 import com.innteam.buildup.model.PaperRequest;
 import com.innteam.buildup.model.RoadFolder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,12 +19,12 @@ public class TrackWebApi {
   }
 
   @PostMapping("/finish")
-  public void finish(@RequestBody PaperRequest request) {
-
+  public ResponseEntity finish(@RequestBody PaperRequest request) {
+    return new ResponseEntity(HttpStatus.OK);
   }
 
   @PostMapping("/skip")
-  public void skip(@RequestBody PaperRequest request) {
-
+  public ResponseEntity skip(@RequestBody PaperRequest request) {
+    return new ResponseEntity(HttpStatus.OK);
   }
 }
