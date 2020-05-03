@@ -1,10 +1,7 @@
 package com.innteam.buildup.commons.model.user;
 
 import com.innteam.buildup.commons.model.DomainObject;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
@@ -16,6 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = User.TABLE_NAME)
 public class User extends DomainObject {

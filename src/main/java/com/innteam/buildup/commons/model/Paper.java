@@ -11,7 +11,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Entity
 @Table(name = Paper.TABLE_NAME)
-public class Paper extends DomainObject{
+public class Paper extends DomainObject {
   static final String TABLE_NAME = "papers";
   private String name;
   private String link;
