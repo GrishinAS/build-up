@@ -8,6 +8,7 @@ import com.innteam.buildup.commons.model.user.PaperActivityStatus;
 import com.innteam.buildup.commons.model.user.Progress;
 import com.innteam.buildup.commons.model.user.User;
 import com.innteam.buildup.commons.model.user.UserCrudService;
+
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.innteam.buildup.commons.model.roadFolders.RoadFolder;
