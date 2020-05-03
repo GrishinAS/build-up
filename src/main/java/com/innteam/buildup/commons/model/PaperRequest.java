@@ -1,4 +1,4 @@
-package com.innteam.buildup.model;
+package com.innteam.buildup.commons.model;
 
 import lombok.Data;
 

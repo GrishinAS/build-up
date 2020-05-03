@@ -1,8 +1,8 @@
 package com.innteam.buildup.rest;
 
-import com.innteam.buildup.commons.model.User;
-import com.innteam.buildup.model.LoginRequest;
-import com.innteam.buildup.model.UserData;
+import com.innteam.buildup.commons.model.user.User;
+import com.innteam.buildup.commons.model.LoginRequest;
+import com.innteam.buildup.commons.model.UserData;
 import com.innteam.buildup.service.AccountsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ public class UserWebApi {
   @PostMapping("/register")
   public ResponseEntity register(@RequestBody UserData request) {
     User user = new User();
-    user.setFreeTime(request.getDailyFreeTime());
+    user.setFreeTimePerDay(request.getDailyFreeTime());
     user.setName(request.getUser_name());
     accountsService.save(user);
     return new ResponseEntity(HttpStatus.OK);
@@ -32,7 +32,7 @@ public class UserWebApi {
     return UserData.builder()
            .user_name(user.getName())
            .uuid(user.getId().toString())
-           .dailyFreeTime(user.getFreeTime())
+           .dailyFreeTime(user.getFreeTimePerDay())
            .build();
   }
 }

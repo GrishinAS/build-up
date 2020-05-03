@@ -1,7 +1,7 @@
 package com.innteam.buildup.rest;
 
-import com.innteam.buildup.model.PaperRequest;
-import com.innteam.buildup.model.RoadFolder;
+import com.innteam.buildup.commons.model.PaperRequest;
+import com.innteam.buildup.commons.model.RoadFolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

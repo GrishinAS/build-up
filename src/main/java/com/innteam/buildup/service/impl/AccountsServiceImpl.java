@@ -1,14 +1,14 @@
 package com.innteam.buildup.service.impl;
 
-import com.innteam.buildup.commons.model.User;
-import com.innteam.buildup.commons.model.UserRepository;
+import com.innteam.buildup.commons.model.user.User;
+import com.innteam.buildup.commons.model.user.UserRepository;
 import com.innteam.buildup.service.AccountsService;
 
 import java.util.List;
 import java.util.Optional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
