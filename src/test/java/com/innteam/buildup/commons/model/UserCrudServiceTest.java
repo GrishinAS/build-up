@@ -23,9 +23,7 @@ public class UserCrudServiceTest {
 
     @Test
     public void test() {
-        final User user = new User();
-        user.setFreeTimePerDay(100);
-        user.setName("Anton");
+        final User user = new User("Toxa",100, 100);
         final UUID uuid = service.create(user);
 
         final User anton = service.read(uuid);

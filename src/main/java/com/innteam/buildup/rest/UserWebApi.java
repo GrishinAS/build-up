@@ -19,9 +19,7 @@ public class UserWebApi {
 
   @PostMapping("/register")
   public ResponseEntity register(@RequestBody UserData request) {
-    User user = new User();
-    user.setFreeTimePerDay(request.getDailyFreeTime());
-    user.setName(request.getUser_name());
+    User user = new User(request.getUser_name(), request.getDailyFreeTime(), request.getWeeklyFreeTime());
     userCrudService.create(user);
     return new ResponseEntity(HttpStatus.OK);
   }
@@ -33,6 +31,7 @@ public class UserWebApi {
            .user_name(user.getName())
            .uuid(user.getId().toString())
            .dailyFreeTime(user.getFreeTimePerDay())
+           .weeklyFreeTime(user.getFreeDaysPerWeek())
            .build();
   }
 }

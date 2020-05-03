@@ -11,14 +11,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
+@Getter
+@NoArgsConstructor
 @Table(name = User.TABLE_NAME)
 public class User extends DomainObject {
+
     public static final String TABLE_NAME = "users";
+
+    public User(String name, long freeTimePerDay, int freeDaysPerWeek) {
+        this.name = name;
+        this.freeTimePerDay = freeTimePerDay;
+        this.freeDaysPerWeek = freeDaysPerWeek;
+    }
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     List<Progress> progressList = new ArrayList<>();
