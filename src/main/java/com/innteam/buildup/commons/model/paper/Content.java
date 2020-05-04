@@ -2,10 +2,7 @@ package com.innteam.buildup.commons.model.paper;
 
 import com.innteam.buildup.commons.model.ContentType;
 import com.innteam.buildup.commons.model.DomainObject;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -15,6 +12,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@EqualsAndHashCode(callSuper = true)
 @Table(name = Content.TABLE_NAME)
 public class Content extends DomainObject {
     static final String TABLE_NAME = "contents";

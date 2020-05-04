@@ -15,6 +15,7 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 @Table(name = User.TABLE_NAME)
 public class User extends DomainObject {
 

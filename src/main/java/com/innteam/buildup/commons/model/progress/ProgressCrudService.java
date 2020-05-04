@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.UUID;
 import java.util.stream.Collectors;
 

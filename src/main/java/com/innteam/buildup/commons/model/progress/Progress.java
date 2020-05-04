@@ -14,6 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@EqualsAndHashCode(callSuper = true)
 @Table(name = Progress.TABLE_NAME)
 public class Progress extends DomainObject {
     static final String TABLE_NAME = "progress";
