@@ -1,13 +1,12 @@
 package com.innteam.buildup.commons.model.roadFolders;
 
 import com.innteam.buildup.commons.model.DomainObject;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.innteam.buildup.commons.model.paper.Content;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -15,12 +14,13 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = RoadFolder.TABLE_NAME)
-public class RoadFolder extends DomainObject {
-    static final String TABLE_NAME = "roadFolders";
-    private String name;
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class RoadPoint extends DomainObject {
+    String name;
+    String description;
 
     @ManyToMany(
             fetch = FetchType.EAGER,
             cascade = CascadeType.ALL)
-    private List<RoadPoint> internal;
+    private Set<Content> contents;
 }
