@@ -27,7 +27,7 @@ public class UserCrudServiceTest {
         final UUID uuid = service.create(user);
 
         final User anton = service.read(uuid);
-        final Content content = new Content("Endpoints", "https://docs.google.com/document/d/1NS2ziIaUn4BlfwuSzG0CzbgxfN-wbIPW6dX5VjEUBOg/edit", 1000);
+        final Content content = new Content(ContentType.BOOK, "Endpoints", "https://docs.google.com/document/d/1NS2ziIaUn4BlfwuSzG0CzbgxfN-wbIPW6dX5VjEUBOg/edit", 1000);
         anton.getProgressList().add(new Progress(content, 10L, PaperActivityStatus.IN_PROGRESS));
 
         service.update(anton);
