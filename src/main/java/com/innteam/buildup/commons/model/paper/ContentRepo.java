@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface PaperRepo extends JpaRepository<Content, UUID> {
+public interface ContentRepo extends JpaRepository<Content, UUID> {
 }

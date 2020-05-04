@@ -12,8 +12,8 @@ import java.util.UUID;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Service
 @Scope("singleton")
-public class PaperCrudService extends DomainObjectCrudServiceBase<Content> {
-    public PaperCrudService(PagingAndSortingRepository<Content, UUID> repo) {
+public class ContentCrudService extends DomainObjectCrudServiceBase<Content> {
+    public ContentCrudService(PagingAndSortingRepository<Content, UUID> repo) {
         super(repo);
     }
 }

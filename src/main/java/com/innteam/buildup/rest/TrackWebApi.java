@@ -1,8 +1,9 @@
 package com.innteam.buildup.rest;
 
+import com.innteam.buildup.commons.model.ContentCompleteRequest;
 import com.innteam.buildup.commons.model.ContentType;
 import com.innteam.buildup.commons.model.FinishAllRequest;
-import com.innteam.buildup.commons.model.PaperRequest;
+import com.innteam.buildup.commons.model.PointProgressRequest;
 import com.innteam.buildup.commons.model.paper.Content;
 import com.innteam.buildup.commons.model.progress.Progress;
 import com.innteam.buildup.commons.model.progress.ProgressCrudService;
@@ -44,33 +45,50 @@ public class TrackWebApi {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping("/progress")
-    public ResponseEntity progress(@RequestBody PaperRequest request) {
+    @GetMapping("/content/progress")
+    public Progress pointProgress(String contentId, String userId) {
+        return progressCrudService.getProgressFor(UUID.fromString(userId), UUID.fromString(contentId));
+    }
+
+    @GetMapping("/point/progress")
+    public double pointProgress(PointProgressRequest request) {
+        String pointId = request.getPointId();
+        String userId = request.getUserId();
+        final RoadPoint point = pointCrudService.read(UUID.fromString(pointId));
+        final UUID userUUID = UUID.fromString(userId);
+        return point.getContents().stream().mapToDouble(c -> {
+            final Progress progress = progressCrudService.getProgressFor(userUUID, c.getId());
+            return progress.getCompletion();
+        }).average().orElseThrow(() -> new IllegalArgumentException("Could not calculate progress for point"));
+    }
+
+    @PostMapping("/inProgress")
+    public ResponseEntity pointProgress(@RequestBody ContentCompleteRequest request) {
         return changeProgressStatus(request, PaperActivityStatus.IN_PROGRESS);
     }
 
     @PatchMapping("/skip")
-    public ResponseEntity skip(@RequestBody PaperRequest request) {
+    public ResponseEntity skip(@RequestBody ContentCompleteRequest request) {
         return changeProgressStatus(request, PaperActivityStatus.DONE);
     }
 
     @PatchMapping("/finish")
-    public ResponseEntity finish(@RequestBody PaperRequest request) {
+    public ResponseEntity finish(@RequestBody ContentCompleteRequest request) {
         return changeProgressStatus(request, PaperActivityStatus.DONE);
     }
 
     @PatchMapping("/finishFolder")
     public ResponseEntity finishFolder(@RequestBody FinishAllRequest request) {
         for (String paper : request.getPaperIds()) {
-            changeProgressStatus(new PaperRequest(paper, request.getUserId(), request.getTime()), PaperActivityStatus.DONE);
+            changeProgressStatus(new ContentCompleteRequest(paper, request.getUserId(), request.getTime()), PaperActivityStatus.DONE);
         }
         return ResponseEntity.ok().build();
     }
 
-    private ResponseEntity changeProgressStatus(@RequestBody PaperRequest request, PaperActivityStatus status) {
-        final String user_id = request.getUser_id();
-        final String contentId = request.getPaper_id();
-        final Progress progress = progressCrudService.getProgressFor(UUID.fromString(user_id), UUID.fromString(contentId));
+    private ResponseEntity changeProgressStatus(@RequestBody ContentCompleteRequest request, PaperActivityStatus status) {
+        final String userId = request.getUserId();
+        final String contentId = request.getContentId();
+        final Progress progress = progressCrudService.getProgressFor(UUID.fromString(userId), UUID.fromString(contentId));
         switch (status) {
             case DONE:
             case SKIPPED:
