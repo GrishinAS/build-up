@@ -18,6 +18,8 @@ import java.util.Set;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class RoadPoint extends DomainObject {
     String name;
+    @Lob
+    @Column(length = 100000)
     String description;
 
     @ManyToMany(
