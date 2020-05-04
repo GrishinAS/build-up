@@ -46,7 +46,7 @@ public class TrackWebApi {
     }
 
     @GetMapping("/content/progress")
-    public Progress pointProgress(String contentId, String userId) {
+    public Progress contentProgress(String contentId, String userId) {
         return progressCrudService.getProgressFor(UUID.fromString(userId), UUID.fromString(contentId));
     }
 
@@ -63,7 +63,7 @@ public class TrackWebApi {
     }
 
     @PostMapping("/inProgress")
-    public ResponseEntity pointProgress(@RequestBody ContentCompleteRequest request) {
+    public ResponseEntity contentProgress(@RequestBody ContentCompleteRequest request) {
         return changeProgressStatus(request, PaperActivityStatus.IN_PROGRESS);
     }
 
@@ -77,8 +77,8 @@ public class TrackWebApi {
         return changeProgressStatus(request, PaperActivityStatus.DONE);
     }
 
-    @PatchMapping("/finishFolder")
-    public ResponseEntity finishFolder(@RequestBody FinishAllRequest request) {
+    @PatchMapping("/finishAll")
+    public ResponseEntity finishAll(@RequestBody FinishAllRequest request) {
         for (String paper : request.getPaperIds()) {
             changeProgressStatus(new ContentCompleteRequest(paper, request.getUserId(), request.getTime()), PaperActivityStatus.DONE);
         }
@@ -98,6 +98,7 @@ public class TrackWebApi {
                 break;
         }
         progress.setStatus(status);
+        progressCrudService.update(progress);
 
         return ResponseEntity.ok().build();
     }
