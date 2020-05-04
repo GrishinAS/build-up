@@ -11,6 +11,7 @@ import com.innteam.buildup.commons.model.roadFolders.PointCrudService;
 import com.innteam.buildup.commons.model.roadFolders.RoadPoint;
 import com.innteam.buildup.commons.model.user.PaperActivityStatus;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -52,6 +53,7 @@ public class TrackWebApi {
         return progressCrudService.getProgressFor(UUID.fromString(userId), UUID.fromString(contentId));
     }
 
+    @Getter
     @RequiredArgsConstructor
     private static class Result {
         private final double result;
