@@ -1,6 +1,8 @@
 package com.innteam.buildup.commons.model.roadFolders;
 
+import com.innteam.buildup.commons.model.ContentType;
 import com.innteam.buildup.commons.model.DomainObjectCrudServiceBase;
+import com.innteam.buildup.commons.model.paper.Content;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -26,7 +29,6 @@ public class PointCrudService extends DomainObjectCrudServiceBase<RoadPoint> {
     public List<RoadPoint> getMock() {
         List<RoadPoint> result = new ArrayList<>();
         result.add(new RoadPoint());
-
         final RoadFolder folder = folderCrudService.read(folderCrudService.create(new RoadFolder("Java", result)));
         return folder.getInternal();
     }

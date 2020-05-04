@@ -1,6 +1,7 @@
 package com.innteam.buildup.commons.model.user;
 
 import com.innteam.buildup.commons.model.DomainObject;
+import com.innteam.buildup.commons.model.progress.Progress;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 

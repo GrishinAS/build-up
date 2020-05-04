@@ -1,7 +1,8 @@
-package com.innteam.buildup.commons.model.user;
+package com.innteam.buildup.commons.model.progress;
 
 import com.innteam.buildup.commons.model.DomainObject;
 import com.innteam.buildup.commons.model.paper.Content;
+import com.innteam.buildup.commons.model.user.PaperActivityStatus;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
@@ -16,10 +17,11 @@ import javax.persistence.*;
 @Table(name = Progress.TABLE_NAME)
 public class Progress extends DomainObject {
     static final String TABLE_NAME = "progress";
-   @ManyToOne(
+    @ManyToOne(
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
-   Content content;
-    Long timeSpent;
+    Content content;
+    long timeSpent = 0L;
+    double completion = 0d;
     PaperActivityStatus status;
 }

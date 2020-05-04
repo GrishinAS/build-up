@@ -5,12 +5,12 @@ import com.innteam.buildup.commons.model.FinishAllRequest;
 import com.innteam.buildup.commons.model.PaperRequest;
 import com.innteam.buildup.commons.model.paper.Content;
 import com.innteam.buildup.commons.model.paper.PaperCrudService;
+import com.innteam.buildup.commons.model.progress.Progress;
+import com.innteam.buildup.commons.model.progress.ProgressCrudService;
 import com.innteam.buildup.commons.model.roadFolders.PointCrudService;
-import com.innteam.buildup.commons.model.roadFolders.RoadFolder;
 import com.innteam.buildup.commons.model.roadFolders.RoadFolderCrudService;
 import com.innteam.buildup.commons.model.roadFolders.RoadPoint;
 import com.innteam.buildup.commons.model.user.PaperActivityStatus;
-import com.innteam.buildup.commons.model.user.Progress;
 import com.innteam.buildup.commons.model.user.User;
 import com.innteam.buildup.commons.model.user.UserCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +28,19 @@ public class TrackWebApi {
     private UserCrudService userCrudService;
     private RoadFolderCrudService roadCrudService;
     private PointCrudService pointCrudService;
+    private ProgressCrudService progressCrudService;
 
     @Autowired
-    public TrackWebApi(PaperCrudService paperCrudService, UserCrudService userCrudService, RoadFolderCrudService roadCrudService) {
+    public TrackWebApi(PaperCrudService paperCrudService,
+                       UserCrudService userCrudService,
+                       RoadFolderCrudService roadCrudService,
+                       PointCrudService pointCrudService,
+                       ProgressCrudService progressCrudService) {
         this.paperCrudService = paperCrudService;
         this.userCrudService = userCrudService;
         this.roadCrudService = roadCrudService;
+        this.pointCrudService = pointCrudService;
+        this.progressCrudService = progressCrudService;
     }
 
     @GetMapping("/roadMap")
@@ -73,11 +80,18 @@ public class TrackWebApi {
     }
 
     private ResponseEntity changeProgressStatus(@RequestBody PaperRequest request, PaperActivityStatus status) {
-        final User anton = userCrudService.read(UUID.fromString(request.getUser_id()));
-        final Content content = paperCrudService.read(UUID.fromString(request.getPaper_id()));
-
-        anton.getProgressList().add(new Progress(content, Long.parseLong(request.getTime()), status)); //??
-        userCrudService.update(anton);
+        final String user_id = request.getUser_id();
+        final String contentId = request.getPaper_id();
+        final Progress progress = progressCrudService.getProgressFor(UUID.fromString(user_id), UUID.fromString(contentId));
+        switch (status) {
+            case DONE:
+            case SKIPPED:
+                progress.setCompletion(1d);
+                break;
+            case IN_PROGRESS:
+                break;
+        }
+        progress.setStatus(status);
 
         return ResponseEntity.ok().build();
     }
