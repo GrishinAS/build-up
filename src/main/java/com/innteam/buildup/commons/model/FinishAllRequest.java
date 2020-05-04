@@ -1,14 +1,15 @@
 package com.innteam.buildup.commons.model;
 
-import java.util.List;
 import lombok.Data;
+
+import java.util.List;
 
 /**
  * For finish all rest
  */
 @Data
 public class FinishAllRequest {
-  private List<String> paper_ids;
-  private String user_id;
-  private String time;
+    private List<String> paperIds;
+    private String userId;
+    private String time;
 }

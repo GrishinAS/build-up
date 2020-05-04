@@ -4,12 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * For finish and skip rests
+ * For finish and skip content
  */
 @Data
 @AllArgsConstructor
-public class PaperRequest {
-  private String paper_id;
-  private String user_id;
+public class ContentCompleteRequest {
+  private String contentId;
+  private String userId;
   private String time;
 }
