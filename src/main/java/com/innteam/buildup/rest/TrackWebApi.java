@@ -4,15 +4,11 @@ import com.innteam.buildup.commons.model.ContentType;
 import com.innteam.buildup.commons.model.FinishAllRequest;
 import com.innteam.buildup.commons.model.PaperRequest;
 import com.innteam.buildup.commons.model.paper.Content;
-import com.innteam.buildup.commons.model.paper.PaperCrudService;
 import com.innteam.buildup.commons.model.progress.Progress;
 import com.innteam.buildup.commons.model.progress.ProgressCrudService;
 import com.innteam.buildup.commons.model.roadFolders.PointCrudService;
-import com.innteam.buildup.commons.model.roadFolders.RoadFolderCrudService;
 import com.innteam.buildup.commons.model.roadFolders.RoadPoint;
 import com.innteam.buildup.commons.model.user.PaperActivityStatus;
-import com.innteam.buildup.commons.model.user.User;
-import com.innteam.buildup.commons.model.user.UserCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -65,8 +61,8 @@ public class TrackWebApi {
 
     @PatchMapping("/finishFolder")
     public ResponseEntity finishFolder(@RequestBody FinishAllRequest request) {
-        for (String paper : request.getPaper_ids()) {
-            changeProgressStatus(new PaperRequest(paper, request.getUser_id(), request.getTime()), PaperActivityStatus.DONE);
+        for (String paper : request.getPaperIds()) {
+            changeProgressStatus(new PaperRequest(paper, request.getUserId(), request.getTime()), PaperActivityStatus.DONE);
         }
         return ResponseEntity.ok().build();
     }
