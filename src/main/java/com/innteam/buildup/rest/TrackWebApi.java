@@ -37,7 +37,7 @@ public class TrackWebApi {
     }
 
     @GetMapping("/roadMap")
-    public List<RoadFolder> roadList(@RequestParam String username) {
+    public List<RoadPoint> roadList(@RequestParam String username) {
         return pointCrudService.getMock(); //TODO make return folder by username
     }
 

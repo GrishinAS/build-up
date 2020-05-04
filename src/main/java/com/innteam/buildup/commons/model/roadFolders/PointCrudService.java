@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,7 +16,8 @@ public class PointCrudService extends DomainObjectCrudServiceBase<RoadPoint> {
         super(repo);
     }
 
-    public List<RoadFolder> getMock() {
-        return null;
+    public List<RoadPoint> getMock() {
+        List<RoadPoint> result = new ArrayList<>();
+        return result;
     }
 }
