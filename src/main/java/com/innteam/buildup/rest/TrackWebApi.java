@@ -24,21 +24,13 @@ import java.util.stream.Collectors;
 @RestController
 public class TrackWebApi {
 
-    private PaperCrudService paperCrudService;
-    private UserCrudService userCrudService;
-    private RoadFolderCrudService roadCrudService;
+
     private PointCrudService pointCrudService;
     private ProgressCrudService progressCrudService;
 
     @Autowired
-    public TrackWebApi(PaperCrudService paperCrudService,
-                       UserCrudService userCrudService,
-                       RoadFolderCrudService roadCrudService,
-                       PointCrudService pointCrudService,
+    public TrackWebApi(PointCrudService pointCrudService,
                        ProgressCrudService progressCrudService) {
-        this.paperCrudService = paperCrudService;
-        this.userCrudService = userCrudService;
-        this.roadCrudService = roadCrudService;
         this.pointCrudService = pointCrudService;
         this.progressCrudService = progressCrudService;
     }
