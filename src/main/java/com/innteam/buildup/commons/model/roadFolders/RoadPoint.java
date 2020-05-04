@@ -13,6 +13,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@EqualsAndHashCode(callSuper = true)
 @Table(name = RoadFolder.TABLE_NAME)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class RoadPoint extends DomainObject {
