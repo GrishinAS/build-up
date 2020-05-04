@@ -26,14 +26,13 @@ public class TrackWebApi {
 
     private PaperCrudService paperCrudService;
     private UserCrudService userCrudService;
-    private RoadFolderCrudService roadCrudService;
     private PointCrudService pointCrudService;
 
     @Autowired
-    public TrackWebApi(PaperCrudService paperCrudService, UserCrudService userCrudService, RoadFolderCrudService roadCrudService) {
+    public TrackWebApi(PaperCrudService paperCrudService, UserCrudService userCrudService, PointCrudService pointCrudService) {
         this.paperCrudService = paperCrudService;
         this.userCrudService = userCrudService;
-        this.roadCrudService = roadCrudService;
+        this.pointCrudService = pointCrudService;
     }
 
     @GetMapping("/roadMap")
