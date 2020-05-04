@@ -10,6 +10,8 @@ import com.innteam.buildup.commons.model.progress.ProgressCrudService;
 import com.innteam.buildup.commons.model.roadFolders.PointCrudService;
 import com.innteam.buildup.commons.model.roadFolders.RoadPoint;
 import com.innteam.buildup.commons.model.user.PaperActivityStatus;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -50,16 +52,24 @@ public class TrackWebApi {
         return progressCrudService.getProgressFor(UUID.fromString(userId), UUID.fromString(contentId));
     }
 
+    @RequiredArgsConstructor
+    private static class Result {
+        private final double result;
+    }
+
     @GetMapping("/point/progress")
-    public double pointProgress(PointProgressRequest request) {
+    public Result pointProgress(PointProgressRequest request) {
         String pointId = request.getPointId();
         String userId = request.getUserId();
         final RoadPoint point = pointCrudService.read(UUID.fromString(pointId));
         final UUID userUUID = UUID.fromString(userId);
-        return point.getContents().stream().mapToDouble(c -> {
+
+
+
+        return new Result(point.getContents().stream().mapToDouble(c -> {
             final Progress progress = progressCrudService.getProgressFor(userUUID, c.getId());
             return progress.getCompletion();
-        }).average().orElseThrow(() -> new IllegalArgumentException("Could not calculate progress for point"));
+        }).average().orElseThrow(() -> new IllegalArgumentException("Could not calculate progress for point")));
     }
 
     @PostMapping("/inProgress")
