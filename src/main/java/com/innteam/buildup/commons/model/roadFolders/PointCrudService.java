@@ -25,7 +25,7 @@ public class PointCrudService extends DomainObjectCrudServiceBase<RoadPoint> {
 
     public List<RoadPoint> getMock() {
         List<RoadPoint> result = new ArrayList<>();
-
+        result.add(new RoadPoint());
 
         final RoadFolder folder = folderCrudService.read(folderCrudService.create(new RoadFolder("Java", result)));
         return folder.getInternal();
