@@ -18,7 +18,7 @@
 		<java.version>1.8</java.version>
 		<springframeworkboot.version>2.1.7.RELEASE</springframeworkboot.version>
 		<appache.commons.collecitons.version>4.1</appache.commons.collecitons.version>
-		<hibernate.validation.verison>6.1.4.Final</hibernate.validation.verison>
+		<hibernate.validation.verison>6.1.5.Final</hibernate.validation.verison>
 	</properties>
 
 	<dependencies>
